@@ -23,13 +23,13 @@
 #include <linux/dma-mapping.h>
 #include <linux/pda_power.h>
 #include <linux/io.h>
-//20100817, jm1.lee@lge.com, for USB mode switching [START]
+//20100817,  for USB mode switching [START]
 #if defined(CONFIG_USB_SUPPORT_LGE_ANDROID_GADGET)
 #include <linux/usb/android.h>
 #define SERIAL_NUMBER_STRING_LEN 16
 #else
 #include <linux/usb/android_composite.h>
-//20100817, jm1.lee@lge.com, for USB mode switching [END]
+//20100817,  for USB mode switching [END]
 #endif
 
 #include <linux/i2c.h>
@@ -84,7 +84,7 @@ static char *tegra_android_functions_rndis_adb[] = {
 #endif
 };
 
-//20100709, jm1.lee@lge.com, for LGE Android USB Driver interface [START]
+//20100709,  for LGE Android USB Driver interface [START]
 #if defined(CONFIG_MACH_STAR)
 static char *tegra_android_functions_lge[] = {
 #ifdef CONFIG_USB_ANDROID_ACM
@@ -98,7 +98,7 @@ static char *tegra_android_functions_lge[] = {
 #endif
 };
 #endif
-//20100709, jm1.lee@lge.com, for LGE Android USB Driver interface [END]
+//20100709,  for LGE Android USB Driver interface [END]
 static char *tegra_android_functions_all[] = {
 #ifdef CONFIG_USB_ANDROID_RNDIS
 	"rndis",
@@ -112,7 +112,7 @@ static char *tegra_android_functions_all[] = {
 };
 
 static struct android_usb_product tegra_android_products[] = {
-//20100709, jm1.lee@lge.com, for LGE Android USB Driver interface [START]
+//20100709,  for LGE Android USB Driver interface [START]
 #if defined(CONFIG_MACH_STAR)
 	[0] = {
 		.product_id = 0x618E,
@@ -136,7 +136,7 @@ static struct android_usb_product tegra_android_products[] = {
 		.functions = tegra_android_functions_ums_adb,
 	},
 #endif
-//20100709, jm1.lee@lge.com, for LGE Android USB Driver interface [END]
+//20100709, , for LGE Android USB Driver interface [END]
 	[2] = {
 		.product_id = 0x7102,
 		.num_functions = ARRAY_SIZE(tegra_android_functions_rndis),
@@ -151,16 +151,16 @@ static struct android_usb_product tegra_android_products[] = {
 
 static char *harmony_dev = "NVIDIA Harmony";
 static char *ventana_dev = "NVIDIA Ventana";
-//20100710, jm1.lee@lge.com, for LGE Android USB Driver interface [START]
+//20100710, for LGE Android USB Driver interface [START]
 #if defined(CONFIG_MACH_STAR)
 static char *generic_dev = "LGE Android Phone";
 #else
 static char *generic_dev = "NVIDIA Tegra 2";
 #endif
-//20100710, jm1.lee@lge.com, for LGE Android USB Driver interface [END]
+//20100710,  for LGE Android USB Driver interface [END]
 
 static struct android_usb_platform_data tegra_android_platform = {
-//20100709, jm1.lee@lge.com, for LGE Android USB Driver interface [START]
+//20100709,  for LGE Android USB Driver interface [START]
 #if 0
 	.vendor_id = 0x955,
 	.product_id = 0x7100,
@@ -178,7 +178,7 @@ static struct android_usb_platform_data tegra_android_platform = {
 	.num_functions = ARRAY_SIZE(tegra_android_functions_lge),
 	.functions = tegra_android_functions_lge,
 #endif
-//20100709, jm1.lee@lge.com, for LGE Android USB Driver interface [END]
+//20100709, for LGE Android USB Driver interface [END]
 };
 static struct platform_device tegra_android_device = {
 	.name = "android_usb",
@@ -189,7 +189,7 @@ static struct platform_device tegra_android_device = {
 };
 #ifdef CONFIG_USB_ANDROID_MASS_STORAGE
 static struct usb_mass_storage_platform_data tegra_usb_fsg_platform = {
-//20100710, jm1.lee@lge.com, change mass storage device information [START]
+//20100710, change mass storage device information [START]
 #if defined (CONFIG_MACH_STAR)
 	.vendor = "LGE",
 	.product = "Android Phone",
@@ -197,7 +197,7 @@ static struct usb_mass_storage_platform_data tegra_usb_fsg_platform = {
 	.vendor = "NVIDIA",
 	.product = "Tegra 2",
 #endif
-//20100710, jm1.lee@lge.com, change mass storage device information [END]
+//20100710, change mass storage device information [END]
 	.nluns = 1,
 	.bulk_size = 16384,
 };
@@ -327,7 +327,7 @@ static struct platform_device tegra_android_device =
 
 #ifdef CONFIG_USB_ANDROID_MASS_STORAGE
 static struct usb_mass_storage_platform_data tegra_usb_fsg_platform = {
-//20100710, jm1.lee@lge.com, change mass storage device information [START]
+//20100710, change mass storage device information [START]
 #if defined (CONFIG_MACH_STAR)
 	.vendor = "LGE",
 	.product = "Android Phone",
@@ -335,7 +335,7 @@ static struct usb_mass_storage_platform_data tegra_usb_fsg_platform = {
 	.vendor = "NVIDIA",
 	.product = "Tegra 2",
 #endif
-//20100710, jm1.lee@lge.com, change mass storage device information [END]
+//20100710, change mass storage device information [END]
 	.nluns = 1,
 	.bulk_size = 16384,
 };

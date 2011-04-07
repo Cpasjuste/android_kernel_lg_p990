@@ -103,7 +103,7 @@ static char serial_number[MAX_SERIAL_LEN] = "\0";
 #else
 static char serial_number[MAX_SERIAL_LEN] = "1234567890ABCDEF";
 #endif
-/* LGE_CHANGES_E [younsuk.song@lge.com] 2010-06-22 */
+/* LGE_CHANGES_E [] 2010-06-22 */
 
 static struct kparam_string kps = {
 	.string			= serial_number,
@@ -357,7 +357,7 @@ static int get_num_of_serial_ports(void)
 	return ports;
 }
 
-/* LGE_CHANGE_S [hyunhui.park@lge.com] 2010-08-12, Adjust Detect DeviceClass */
+/* LGE_CHANGE_S [] 2010-08-12, Adjust Detect DeviceClass */
 #ifdef CONFIG_USB_SUPPORT_LGE_ANDROID_GADGET
 static int is_iad_enabled(void)
 {
@@ -408,7 +408,7 @@ static int is_iad_enabled(void)
 	return 0;
 }
 #endif
-/* LGE_CHANGE_E [hyunhui.park@lge.com] 2010-08-12 */
+/* LGE_CHANGE_E [] 2010-08-12 */
 
 static struct usb_configuration android_config_driver = {
 	.label		= "android",
@@ -597,12 +597,12 @@ static int android_switch_composition(u16 pid)
 	}
 	USB_DBG("product_id = 0x%x\n", product_id);
 	usb_composite_unregister(&android_usb_driver);
-/* LGE_CHANGE_S [hyunhui.park@lge.com] 2010-08-09, Give Delay for Host Detect */
+/* LGE_CHANGE_S [] 2010-08-09, Give Delay for Host Detect */
 /* To be detected USB connection/disconnection from host, 
  * give some delay time for stability (derived by function driver code).
  */
 	msleep(20);
-/* LGE_CHANGE_E [hyunhui.park@lge.com] 2010-08-09 */	
+/* LGE_CHANGE_E [] 2010-08-09 */	
 	ret = usb_composite_register(&android_usb_driver);
 
 	return ret;
@@ -689,7 +689,7 @@ static int android_set_pid(const char *val, struct kernel_param *kp)
 		goto out;
 	}
 
-/* LGE_CHANGE_S [hyunhui.park@lge.com] 2010-07-15, Save Switching Overhead */
+/* LGE_CHANGE_S [] 2010-07-15, Save Switching Overhead */
 /* This prevents from mode switching twice by init process */
 	if (product_id == tmp) {
 		pr_info("%s : Requested product id is same, ignore it\n", __func__);
@@ -697,7 +697,7 @@ static int android_set_pid(const char *val, struct kernel_param *kp)
 	}
 
 	pr_info("%s : User set product id - %lx\n", __func__, tmp);
-/* LGE_CHANGE_E [hyunhui.park@lge.com] 2010-07-15 */	
+/* LGE_CHANGE_E [] 2010-07-15 */	
 
 	mutex_lock(&_android_dev->lock);
 	ret = android_switch_composition(tmp);
@@ -809,12 +809,12 @@ static int __init android_probe(struct platform_device *pdev)
 	dev->version = pdata->version;
 	strings_dev[STRING_PRODUCT_IDX].s = pdata->product_name;
 	strings_dev[STRING_MANUFACTURER_IDX].s = pdata->manufacturer_name;
-/* LGE_CHANGES_S [younsuk.song@lge.com] 2010-06-23, Init Serial Number */
+/* LGE_CHANGES_S [] 2010-06-23, Init Serial Number */
 #ifdef CONFIG_USB_SUPPORT_LGE_ANDROID_GADGET
 	sprintf(serial_number, "%s", pdata->serial_number);
 	pr_info("%s : serial_number is %s\n", __func__, serial_number);
 #endif
-/* LGE_CHANGES_E [younsuk.song@lge.com] 2010-06-23 */
+/* LGE_CHANGES_E [] 2010-06-23 */
 	strings_dev[STRING_SERIAL_IDX].s = serial_number;
 	dev->nluns = pdata->nluns;
 	dev->pdata = pdata;
@@ -868,7 +868,7 @@ static int __init init(void)
 	if (ret)
 		goto pdrv_unregister;
 
-/* LGE_CHANGE_S [hyunhui.park@lge.com] 2010-08-12, LGE USB Setting */
+/* LGE_CHANGE_S [] 2010-08-12, LGE USB Setting */
 #ifdef CONFIG_USB_SUPPORT_LGE_ANDROID_GADGET
 
 	if(dev->pdata->init_product_id) {
@@ -877,7 +877,7 @@ static int __init init(void)
 		product_id = dev->pdata->init_product_id;
 	}
 #endif
-/* LGE_CHANGE_E [hyunhui.park@lge.com] 2010-08-12 */	
+/* LGE_CHANGE_E [] 2010-08-12 */	
 
 	/* Defer composite driver registration till product id is available */
 	mutex_lock(&dev->lock);

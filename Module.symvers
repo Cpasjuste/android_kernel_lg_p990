@@ -4022,6 +4022,7 @@
 0xb061a1bf	dev_alloc_name	vmlinux	EXPORT_SYMBOL
 0x615c8cc8	iov_iter_copy_from_user	vmlinux	EXPORT_SYMBOL
 0xab093f69	NvRmOpen	vmlinux	EXPORT_SYMBOL
+0x9c15e530	outer_cache	vmlinux	EXPORT_SYMBOL
 0xfa07c864	generic_fh_to_dentry	vmlinux	EXPORT_SYMBOL_GPL
 0x93fa5caa	try_to_del_timer_sync	vmlinux	EXPORT_SYMBOL
 0xfc467242	ipcomp_output	vmlinux	EXPORT_SYMBOL_GPL

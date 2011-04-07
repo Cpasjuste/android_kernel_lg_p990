@@ -3,11 +3,11 @@
  */
 #ifndef __FSL_USB2_UDC_H
 #define __FSL_USB2_UDC_H
-//20100422, jm1.lee@lge.com, for USB wake lock
+//20100422, , for USB wake lock
 #if defined (CONFIG_MACH_STAR)
 #include <linux/wakelock.h>
 #endif
-//20100924, jm1.lee@lge.com, for autorun
+//20100924, , for autorun
 #ifdef CONFIG_USB_SUPPORT_LGE_ANDROID_AUTORUN
 #include <linux/switch.h>
 #endif
@@ -500,11 +500,11 @@ struct fsl_udc {
 
 	struct usb_ctrlrequest local_setup_buff;
 	spinlock_t lock;
-//20100422, jm1.lee@lge.com, for USB wake lock
+//20100422, , for USB wake lock
 #if defined (CONFIG_MACH_STAR)
 	struct wake_lock wlock;
 #endif
-//20100924, jm1.lee@lge.com, for autorun
+//20100924, , for autorun
 #ifdef CONFIG_USB_SUPPORT_LGE_ANDROID_AUTORUN
 	struct switch_dev sdev_autorun;
 #endif

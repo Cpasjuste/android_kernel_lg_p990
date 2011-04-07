@@ -1,7 +1,7 @@
 /*
  * Automatically generated C config: don't edit
  * Linux kernel version: 2.6.32.9
- * Wed Apr  6 12:34:38 2011
+ * Thu Apr  7 14:53:33 2011
  */
 #define AUTOCONF_INCLUDED
 #define CONFIG_ANDROID 1
@@ -288,6 +288,7 @@
 #define CONFIG_CPU_IDLE 1
 #define CONFIG_PRINTK_TIME 1
 #define CONFIG_FB_CFB_FILLRECT 1
+#define CONFIG_SWP_EMULATE 1
 #define CONFIG_ATM_BR2684_IPFILTER 1
 #define CONFIG_IP_VS_TAB_BITS 12
 #define CONFIG_LPRINTK_MES 1

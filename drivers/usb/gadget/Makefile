@@ -34,7 +34,7 @@ obj-$(CONFIG_USB_LANGWELL)	+= langwell_udc.o
 #
 # USB gadget drivers
 #
-# 20100825, jm1.lee@lge.com, for USB mode switching [START]
+# 20100825, for USB mode switching [START]
 ifeq ($(CONFIG_USB_ANDROID_CDC_ECM),y)
 F_ECM = f_ecm.o
 endif
@@ -53,7 +53,7 @@ endif
 ifeq ($(CONFIG_USB_SUPPORT_LGE_ANDROID_GADGET),y)
 ANDROID = android_lg.o
 endif
-# 20100825, jm1.lee@lge.com, for USB mode switching [END]
+# 20100825, for USB mode switching [END]
 g_zero-objs			:= zero.o
 g_audio-objs			:= audio.o
 g_ether-objs			:= ether.o
@@ -63,11 +63,11 @@ gadgetfs-objs			:= inode.o
 g_file_storage-objs		:= file_storage.o
 g_printer-objs			:= printer.o
 g_cdc-objs			:= cdc2.o
-# 20100825, jm1.lee@lge.com, for USB mode switching [START]
+# 20100825, for USB mode switching [START]
 g_android-objs			:= $(ANDROID) f_adb.o f_mass_storage.o \
 					u_serial.o f_acm.o u_ether.o \
 					$(F_ECM) $(F_SERIAL) $(F_RMNET) $(F_RNDIS)
-# 20100825, jm1.lee@lge.com, for USB mode switching [END]
+# 20100825, for USB mode switching [END]
 
 obj-$(CONFIG_USB_ZERO)		+= g_zero.o
 obj-$(CONFIG_USB_AUDIO)		+= g_audio.o
@@ -78,16 +78,16 @@ obj-$(CONFIG_USB_G_SERIAL)	+= g_serial.o
 obj-$(CONFIG_USB_G_PRINTER)	+= g_printer.o
 obj-$(CONFIG_USB_MIDI_GADGET)	+= g_midi.o
 obj-$(CONFIG_USB_CDC_COMPOSITE) += g_cdc.o
-# 20100825, jm1.lee@lge.com, for USB mode switching [START]
+# 20100825, for USB mode switching [START]
 obj-$(CONFIG_USB_SUPPORT_LGE_ANDROID_GADGET)	+= g_android.o
-# 20100825, jm1.lee@lge.com, for USB mode switching [END]
+# 20100825, for USB mode switching [END]
 obj-$(CONFIG_USB_ANDROID)	+= android.o
 obj-$(CONFIG_USB_ANDROID_ACM)	+= f_acm.o u_serial.o f_serial.o f_serial_gps.o
 obj-$(CONFIG_USB_ANDROID_ADB)	+= f_adb.o
-# 20100825, jm1.lee@lge.com, for USB mode switching [START]
+# 20100825, for USB mode switching [START]
 ifeq ($(CONFIG_USB_ANDROID),y)
 obj-$(CONFIG_USB_ANDROID_MASS_STORAGE)	+= f_mass_storage.o
 obj-$(CONFIG_USB_ANDROID_RNDIS)	+= f_rndis.o u_ether.o
 endif
-# 20100825, jm1.lee@lge.com, for USB mode switching [END]
+# 20100825, for USB mode switching [END]
 

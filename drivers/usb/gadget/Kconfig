@@ -869,7 +869,7 @@ config USB_ANDROID_CDC_ECM
 	  android gadget.
 	  Say "y" to link the CDC-ECM as a part of android gadget
 
-#20101204, jm1.lee@lge.com, matching for LG Android Net Driver from vs660 [START]
+#20101204, matching for LG Android Net Driver from vs660 [START]
 config USB_SUPPORT_LGE_ANDROID_ECM_FIX
 	boolean "CDC ECM interface support in LGE Android model(common)"
 	depends on USB_ANDROID_CDC_ECM
@@ -877,7 +877,7 @@ config USB_SUPPORT_LGE_ANDROID_ECM_FIX
 	  It supports LG CDC ECM interface in LGE Android model.
 
 	default n
-#20101204, jm1.lee@lge.com, matching for LG Android Net Driver from vs660 [END]
+#20101204, matching for LG Android Net Driver from vs660 [END]
 
 config USB_ANDROID_RNDIS
 	bool "RNDIS function driver"

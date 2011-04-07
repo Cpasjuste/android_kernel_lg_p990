@@ -110,7 +110,6 @@ deps_config := \
 	drivers/staging/dream/Kconfig \
 	drivers/staging/android/Kconfig \
 	drivers/staging/frontier/Kconfig \
-	drivers/staging/mimio/Kconfig \
 	drivers/staging/rtl8192e/Kconfig \
 	drivers/staging/rtl8192su/Kconfig \
 	drivers/staging/rtl8187se/Kconfig \
@@ -555,7 +554,7 @@ deps_config := \
 include/config/auto.conf: \
 	$(deps_config)
 
-ifneq "$(KERNELVERSION)" "2.6.32.9"
+ifneq "$(KERNELVERSION)" "2.6.32.36"
 include/config/auto.conf: FORCE
 endif
 ifneq "$(ARCH)" "arm"

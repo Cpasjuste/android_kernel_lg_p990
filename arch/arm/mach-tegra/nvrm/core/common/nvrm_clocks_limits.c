@@ -73,22 +73,23 @@
 // TEGRA_OC: SubClockId-> 0
 // TEGRA_OC: MinKHz-> 32
 
-#define MAX_OVERCLOCK (1400000)
+#define MAX_OVERCLOCK (1300000)
 
 NvRmCpuShmoo fake_CpuShmoo; // Stored faked CpuShmoo values
 NvRmCpuShmoo stock_CpuShmoo; // Stored stock CpuShmoo values, unused
-NvU32 FakeShmooVmaxIndex = 8; // Max voltage index in the voltage tab (size-1)
+NvU32 FakeShmooVmaxIndex = 7; // Max voltage index in the voltage tab (size-1) (max possible index=7)
 
 NvU32 FakeShmooVoltages[] = {
     750,
     800,
     850,
     875,
-    950,
+    925, // Replace 900000 -> 800000
+//  950, // Replace 900000 -> 800000
     1000,
-    1100,
+    1150, // Move from 1100 to 1150 for 1200Mhz to prevent some device to crash at boot
     1250,
-    1250
+//  1250 // Remove unstable 1400Mhz
 };
 NvRmScaledClkLimits FakepScaledCpuLimits = {
     101, // FakepScaledCpuLimits.HwDeviceId
@@ -100,11 +101,12 @@ NvRmScaledClkLimits FakepScaledCpuLimits = {
     	500000,
     	650000,
     	750000,
-    	900000,
+    	800000, // Replace 900000 -> 800000
+//    	900000, // Replace 900000 -> 800000
     	1000000,
 	1200000,
 	1300000,
-	1400000
+//	1400000 // Remove unstable 1400Mhz
     }
 };
 #endif // USE_FAKE_SHMOO

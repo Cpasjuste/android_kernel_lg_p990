@@ -52,6 +52,23 @@
 #include "ap20/ap20rm_power_dfs.h"
 #include "ap20/ap20rm_clocks.h"
 
+#define USE_FAKE_SHMOO
+#ifdef USE_FAKE_SHMOO
+#include <linux/kernel.h>
+
+/* 
+ * TEGRA AP20 CPU OC/UV Hack by Cpasjuste @ https://github.com/Cpasjuste/tegra_lg_p990_kernel_oc_uv
+ * Inspired by mblaster @ https://github.com/mblaster/linux_2.6.32_folio100
+*/
+
+extern NvRmCpuShmoo fake_CpuShmoo; // Stored faked CpuShmoo
+extern int *FakeShmoo_UV_mV_Ptr; // Stored voltage table from cpufreq sysfs
+extern NvU32 FakeShmooVmaxIndex; // Max voltage index in the voltage tab (size-1)
+
+NvRmDfs *fakeShmoo_Dfs; // Used to get temp from cpufreq
+
+#endif // USE_FAKE_SHMOO
+
 /*****************************************************************************/
 
 // Initial DFS configuration
@@ -810,6 +827,10 @@ static void DfsParametersInit(NvRmDfs* pDfs)
         pDfs->LowCornerKHz.Domains[i] = pDfs->DfsParameters[i].MinKHz;
         pDfs->HighCornerKHz.Domains[i] = pDfs->DfsParameters[i].MaxKHz;
     }
+#ifdef USE_FAKE_SHMOO
+	// Set maximum scaling frequency to 1000mhz at boot
+	pDfs->HighCornerKHz.Domains[NvRmDfsClockId_Cpu] = 1000000;
+#endif
     pDfs->CpuCornersShadow.MinKHz =
         pDfs->LowCornerKHz.Domains[NvRmDfsClockId_Cpu];
     pDfs->CpuCornersShadow.MaxKHz =
@@ -1844,6 +1865,10 @@ NvError NvRmPrivDfsInit(NvRmDeviceHandle hRmDeviceHandle)
     NvRmDfsFrequencies DfsKHz;
     NvRmDfs* pDfs = &s_Dfs;
 
+#ifdef USE_FAKE_SHMOO
+    fakeShmoo_Dfs = &s_Dfs;
+#endif
+
     NV_ASSERT(hRmDeviceHandle);
     DfsHintsPrintInit();
 
@@ -2226,6 +2251,21 @@ DvsChangeCpuVoltage(
     NvRmDvs* pDvs,
     NvRmMilliVolts TargetMv)
 {
+#ifdef USE_FAKE_SHMOO
+	// Voltage hack
+	int i = 0;
+	if( FakeShmoo_UV_mV_Ptr != NULL )
+	{
+		for(i=0; i <FakeShmooVmaxIndex+1; i++)
+		{
+			if(fake_CpuShmoo.ShmooVoltages[i] == TargetMv)
+			{
+				TargetMv -= FakeShmoo_UV_mV_Ptr[i];
+				break;
+			}
+		}
+	}
+#endif // USE_FAKE_SHMOO
     NV_ASSERT(TargetMv >= pDvs->MinCpuMv);
     NV_ASSERT(TargetMv <= pDvs->NominalCpuMv);
 

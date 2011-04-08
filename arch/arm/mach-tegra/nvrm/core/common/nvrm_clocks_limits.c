@@ -84,8 +84,7 @@ NvU32 FakeShmooVoltages[] = {
     800,
     850,
     875,
-    925, // Replace 900000 -> 800000
-//  950, // Replace 900000 -> 800000
+    950,
     1000,
     1150, // Move from 1100 to 1150 for 1200Mhz to prevent some device to crash at boot
     1250,
@@ -101,8 +100,8 @@ NvRmScaledClkLimits FakepScaledCpuLimits = {
     	500000,
     	650000,
     	750000,
-    	800000, // Replace 900000 -> 800000
-//    	900000, // Replace 900000 -> 800000
+    	850000, // Replace 900000 -> 850000
+//    	900000, // Replace 900000 -> 850000
     	1000000,
 	1200000,
 	1300000,

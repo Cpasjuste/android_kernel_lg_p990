@@ -664,7 +664,7 @@ static ssize_t show_scaling_setspeed(struct cpufreq_policy *policy, char *buf)
 }
 
 #ifdef USE_FAKE_SHMOO
-static ssize_t show_FakeShmoo_cpu_temp(struct cpufreq_policy *policy, char *buf)
+static ssize_t show_cpu_temp(struct cpufreq_policy *policy, char *buf)
 {
 	int pTemp = 0;
 
@@ -676,7 +676,7 @@ static ssize_t show_FakeShmoo_cpu_temp(struct cpufreq_policy *policy, char *buf)
 	return sprintf(buf, "%i\n",  pTemp);
 }
 
-static ssize_t show_FakeShmoo_freq_voltage_table(struct cpufreq_policy *policy, char *buf)
+static ssize_t show_frequency_voltage_table(struct cpufreq_policy *policy, char *buf)
 {
 	int i;
 	char *table = buf;
@@ -689,7 +689,7 @@ static ssize_t show_FakeShmoo_freq_voltage_table(struct cpufreq_policy *policy, 
 }
 
 
-static ssize_t show_FakeShmoo_UV_mV_table(struct cpufreq_policy *policy, char *buf)
+static ssize_t show_UV_mV_table(struct cpufreq_policy *policy, char *buf)
 {
 	int i;
 	char *table = buf;
@@ -702,7 +702,7 @@ static ssize_t show_FakeShmoo_UV_mV_table(struct cpufreq_policy *policy, char *b
 	return table - buf;
 }
 
-static ssize_t store_FakeShmoo_UV_mV_table(struct cpufreq_policy *policy, const char *buf, size_t count)
+static ssize_t store_UV_mV_table(struct cpufreq_policy *policy, const char *buf, size_t count)
 {
 	int ret = sscanf( buf, "%i %i %i %i %i %i %i %i ", &FakeShmoo_UV_mV_Ptr[7], &FakeShmoo_UV_mV_Ptr[6], 
 								&FakeShmoo_UV_mV_Ptr[5], &FakeShmoo_UV_mV_Ptr[4], 
@@ -741,9 +741,9 @@ define_one_rw(scaling_max_freq);
 define_one_rw(scaling_governor);
 define_one_rw(scaling_setspeed);
 #ifdef USE_FAKE_SHMOO
-define_one_ro(FakeShmoo_cpu_temp);
-define_one_ro(FakeShmoo_freq_voltage_table);
-define_one_rw(FakeShmoo_UV_mV_table);
+define_one_ro(cpu_temp);
+define_one_ro(frequency_voltage_table);
+define_one_rw(UV_mV_table);
 #endif // USE_FAKE_SHMOO
 
 static struct attribute *default_attrs[] = {
@@ -759,9 +759,9 @@ static struct attribute *default_attrs[] = {
 	&scaling_available_governors.attr,
 	&scaling_setspeed.attr,
 #ifdef USE_FAKE_SHMOO
-	&FakeShmoo_cpu_temp.attr,
-	&FakeShmoo_freq_voltage_table.attr,
-	&FakeShmoo_UV_mV_table.attr,
+	&cpu_temp.attr,
+	&frequency_voltage_table.attr,
+	&UV_mV_table.attr,
 #endif // USE_FAKE_SHMOO
 	NULL
 };

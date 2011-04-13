@@ -2270,6 +2270,9 @@ DvsChangeCpuVoltage(
     {
         NvRmPmuSetVoltage(hRm, pDvs->CpuRailAddress, TargetMv, NULL);
         pDvs->CurrentCpuMv = TargetMv;
+#ifdef USE_FAKE_SHMOO
+	printk( "*** fakeShmoo **** -> CurrentCpuMv : %i\n", TargetMv );
+#endif
     }
 }
 

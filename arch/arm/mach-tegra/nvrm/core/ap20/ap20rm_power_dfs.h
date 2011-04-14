@@ -285,7 +285,6 @@ extern "C"
 //20100903  min voltage fix
 #define NVRM_AP20_LOW_CPU_MV (770)
 
-
 /// Core voltage in suspend
 #define NVRM_AP20_SUSPEND_CORE_MV (1000)
 

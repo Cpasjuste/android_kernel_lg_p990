@@ -42,6 +42,8 @@
 #include "ap15/project_relocation_table.h"
 
 #define USE_FAKE_SHMOO
+#define USE_FAKE_SHMOO_PSYCHO
+
 #ifdef USE_FAKE_SHMOO
 #include <linux/kernel.h>
 
@@ -75,10 +77,43 @@
 // TEGRA_OC: SubClockId-> 0
 // TEGRA_OC: MinKHz-> 32
 
-#define MAX_OVERCLOCK (1200000)
-
 NvRmCpuShmoo fake_CpuShmoo; // Pointer to fake CpuShmoo values
 NvU32 FakeShmooVmaxIndex = 7; // Max voltage index in the voltage tab (size-1)
+
+#ifdef USE_FAKE_SHMOO_PSYCHO
+
+#define MAX_OVERCLOCK (1400000)
+
+NvU32 FakeShmooVoltages[] = {
+    770,
+    800,
+    900,
+    1000,
+    1100,
+    1150,
+    1200,
+    1250,
+};
+
+NvRmScaledClkLimits FakepScaledCpuLimits = {
+    101, // FakepScaledCpuLimits.HwDeviceId
+    0, // FakepScaledCpuLimits.SubClockId
+    32, // FakepScaledCpuLimits.MinKHz
+    // Clock table
+    {
+	300000,
+    	500000,
+    	800000,
+    	1000000,
+	1100000,
+	1200000,
+	1300000,
+	1400000,
+    }
+};
+
+#else
+#define MAX_OVERCLOCK (1200000)
 
 NvU32 FakeShmooVoltages[] = {
     770,
@@ -107,6 +142,8 @@ NvRmScaledClkLimits FakepScaledCpuLimits = {
 	1200000,
     }
 };
+
+#endif // USE_FAKE_SHMOO_PSYCO
 #endif // USE_FAKE_SHMOO
 
 #define NvRmPrivGetStepMV(hRmDevice, step) \

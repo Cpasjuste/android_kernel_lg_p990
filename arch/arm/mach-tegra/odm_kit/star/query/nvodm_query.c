@@ -27,6 +27,8 @@
 #include "nvodm_keylist_reserved.h"
 #include "nvrm_drf.h"
 
+#define USE_FAKE_SHMOO
+
 #define NVODM_ENABLE_EMC_DVFS (1)
 
 static const NvU8
@@ -1792,8 +1794,12 @@ NvU32 NvOdmQueryMemSize(NvOdmMemoryType MemType)
 
 NvU32 NvOdmQueryCarveoutSize(void)
 {
+#ifdef USE_FAKE_SHMOO
+	return 0x04000000; // 128 MB -> 64MB
+#else
     //20100802  increase carveout memory
     return 0x08000000; // 128 MB <- 64MB
+#endif
 }
 
 NvU32 NvOdmQuerySecureRegionSize(void)

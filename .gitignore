@@ -35,6 +35,14 @@ kernel.release
 autoconf.h
 utsrelease.h
 gedit.sh
+Module.symvers
+arch/arm/boot/compressed/vmlinux
+include/config/auto.conf
+include/config/kernel.release
+include/linux/autoconf.h
+include/linux/utsrelease.h
+
+
 #
 # Top-level generic files
 #

@@ -32,6 +32,8 @@
 #include <linux/console.h>
 #include <linux/reboot.h>
 
+#define USE_FAKE_SHMOO
+
 //20100419  for headset detetion [LGE_START]
 #if defined(CONFIG_MACH_STAR)
 #include <linux/switch.h>	//20100419  for Headset Detection [LGE]
@@ -1430,7 +1432,11 @@ static struct platform_device star_muic_device =
 
 //20100803   crash dump [START]
 #if defined(CONFIG_ANDROID_RAM_CONSOLE)
+#ifdef USE_FAKE_SHMOO
+#define STAR_RAM_CONSOLE_BASE 	(447*SZ_1M)
+#else
 #define STAR_RAM_CONSOLE_BASE 	(383*SZ_1M)
+#endif
 #define STAR_RAM_CONSOLE_SIZE	(512*SZ_1K) 	
 static struct resource ram_console_resource[] = {
     {
